@@ -1,12 +1,14 @@
 let express = require('express')
-
 let app = express()
 
-let projetoRoute = require('./routes/projeto')
+let projetoRoute = require('./routes/projeto.route')
 
 let path = require('path')
-
 let bodyParser = require('body-parser')
+
+let conn = require('./connections/mongo.connection')
+
+//console.log(conn)
 
 app.use(bodyParser.json())
 
