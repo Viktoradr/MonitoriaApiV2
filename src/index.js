@@ -2,23 +2,24 @@ let express = require('express')
 let app = express()
 
 let projetoRoute = require('./routes/projeto.route')
+let usuarioRoute = require('./routes/usuario.route')
+let cardRoute = require('./routes/card.route')
 
 let path = require('path')
 let bodyParser = require('body-parser')
 
-let conn = require('./connections/mongo.connection')
-
-//console.log(conn)
+const conn = require('./connections/mongo.connection')
 
 app.use(bodyParser.json())
 
 app.use((req, res, next) => {
     console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body)
-    // res.send('')
     next()
 })
 
 app.use(projetoRoute)
+app.use(usuarioRoute)
+app.use(cardRoute)
 app.use(express.static('public'))
 
 // Handler for 404 - Resource Not Found

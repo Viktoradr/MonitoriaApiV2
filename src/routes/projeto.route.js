@@ -1,5 +1,5 @@
-// let ProjetoModel = require('../models/projeto.model')
 let controller = require('../controllers/projeto.controller')
+
 let routerValidation = require('../shared/validations/router.validation')
 let express = require('express')
 let router = express.Router()

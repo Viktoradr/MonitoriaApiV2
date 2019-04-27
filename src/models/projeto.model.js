@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
 
 let projetoSchema = new mongoose.Schema({
     nome: String,
@@ -7,8 +8,22 @@ let projetoSchema = new mongoose.Schema({
     ativo: Boolean,
     dataCadastro: String,
     dataAtualizacao: String,
-    //cards: [{ body: String, date: Date }],
-    //usuarios: [{}]
+    cards: [
+        { 
+            
+        }
+    ],
+    usuarios: [{
+        usuarioId: ObjectId,
+        nome: String,
+        permissoes: [
+            {
+                permissaoId: ObjectId,
+                descricao: String,
+                ativo: Boolean
+            }
+        ]
+    }]
 })
 
 module.exports = mongoose.model('Projeto', projetoSchema)
