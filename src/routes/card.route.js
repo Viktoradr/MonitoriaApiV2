@@ -4,7 +4,9 @@ let routerValidation = require('../shared/validations/router.validation')
 let express = require('express')
 let router = express.Router()
 
-router.get('/cards', (req, res) => {
+const _baseUrl = '/cards'
+
+router.get(_baseUrl, (req, res) => {
     controller.ListarCards(req, res)
 })
 

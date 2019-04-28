@@ -8,9 +8,30 @@ let projetoSchema = new mongoose.Schema({
     ativo: Boolean,
     dataCadastro: String,
     dataAtualizacao: String,
+    tempoExecucao: Number,
     cards: [
         { 
-            
+            cardId: ObjectId,
+            titulo: String,
+            descricao: String,
+            tipoId: ObjectId,
+            tipo: Number,
+            mapper: [
+                [String]
+            ],
+            endpoint: {
+                producao: String,
+                homologacao: String,
+                ativo: Number
+            },
+            config: {
+                width: String,
+                height: String,
+                eixoX: String,
+                eixoY: String,
+                colors: [String],
+                labels: [String]
+            }
         }
     ],
     usuarios: [{
