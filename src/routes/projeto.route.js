@@ -1,6 +1,6 @@
 let controller = require('../controllers/projeto.controller')
-
 let routerValidation = require('../shared/validations/router.validation')
+
 let express = require('express')
 let router = express.Router()
 
@@ -19,23 +19,23 @@ router.get('/projetos', (req, res) => {
     controller.ListarProjetos(req, res)
 })
 
-router.get('/projetos/:id', (req, res) => {
+router.get('/projeto/:id', (req, res) => {
     routerValidation.ValidarParametro(req, res)
     controller.BuscarProjetoById(req, res)
 })
 
-router.post('/projetos/add', (req, res) => {
+router.post('/projeto/add', (req, res) => {
     routerValidation.ValidarBody(req, res)
     controller.AdicionarProjeto(req, res)
     console.log('Router Post')
 })
 
-router.put('/projetos/atualizar', (req, res) => {
+router.put('/projeto/atualizar', (req, res) => {
     routerValidation.ValidarBodyId(req.body._id, res)
     controller.AtualizarProjeto(req, res)
 })
 
-router.delete('/projetos/remover', (req, res) => {
+router.delete('/projeto/remover', (req, res) => {
     routerValidation.ValidarBodyId(req.body._id, res)
     controller.RemoverProjeto(req, res)
 })

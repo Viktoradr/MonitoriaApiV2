@@ -8,7 +8,7 @@ let cardRoute = require('./routes/card.route')
 let path = require('path')
 let bodyParser = require('body-parser')
 
-const conn = require('./connections/mongo.connection')
+// const conn = require('./connections/mongo.connection')
 
 app.use(bodyParser.json())
 
@@ -23,11 +23,25 @@ app.use(cardRoute)
 app.use(express.static('public'))
 
 // Enable Cors
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-    next();
+app.use((req, res, next) => {
+
+    if(req.method === 'OPTIONS') {
+        let headers = {};
+
+        headers["Access-Control-Allow-Origin"] = "*";
+        headers["Access-Control-Allow-Origin"] = "POST, GET, PUT, DELETE, OPTIONS";
+        headers["Access-Control-Allow-Origin"] = false;
+        headers["Access-Control-Allow-Origin"] = "Origin, Authorization, Accept, Content-Type, x-access-token";
+        res.writeHead(200, headers)
+        res.end()
+
+    } else {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+        res.header("Access-Control-Allow-Credentials", false);
+        res.header("Access-Control-Allow-Headers", "Origin, Authorization, Accept, Content-Type, x-access-token");
+        next();
+    }
 });
 
 // Handler for 404 - Resource Not Found

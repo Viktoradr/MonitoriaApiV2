@@ -1,4 +1,4 @@
-const Projeto = require('../models/projeto.model');
+const Projeto = require('../models/projeto.model')
 
 exports.ListarProjetos = function (req, res) {
     Projeto.find()
