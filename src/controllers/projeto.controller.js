@@ -2,7 +2,10 @@ const Projeto = require('../models/projeto.model')
 
 exports.ListarProjetos = function (req, res) {
     Projeto.find()
-        .then(doc => res.json(doc))
+        .then(doc => {
+            res.json(doc)
+            // res.send(doc)
+        })
         .catch(err => res.status(500).json(err))
 };
 

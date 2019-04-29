@@ -1,8 +1,7 @@
 let controller = require('../controllers/projeto.controller')
 let routerValidation = require('../shared/validations/router.validation')
 
-let express = require('express')
-let router = express.Router()
+let router = require('express').Router()
 
 // QueryString => Query property on the request object
 // localhost:3000/projeto?id=1001&usuarioId=10
@@ -40,5 +39,5 @@ router.delete('/projeto/remover', (req, res) => {
     controller.RemoverProjeto(req, res)
 })
 
-module.exports = router
+module.exports = router;
 
