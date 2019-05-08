@@ -39,5 +39,10 @@ router.delete('/projeto/remover', (req, res) => {
     controller.RemoverProjeto(req, res)
 })
 
+router.put('/projeto/atualizarCardSize', (req, res) => {
+    routerValidation.ValidarBodyId(req.body._id, res)
+    controller.AtualizarCardProjeto(req, res)
+})
+
 module.exports = router;
 
