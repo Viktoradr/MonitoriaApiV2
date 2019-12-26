@@ -1,27 +1,31 @@
 const mongoose = require('mongoose')
 
-const server = 'cluster0-zhpvr.azure.mongodb.net'
+// const server = 'cluster0-zhpvr.azure.mongodb.net'
 const database = 'Monitoria'
-const user = 'Victor'
-const password = 'V0302adr'
+// const user = 'Victor'
+// const password = 'V0302adr'
 
-const uri = `mongodb+srv://${user}:${password}@${server}/${database}?retryWrites=true`;
+// const uri = `mongodb+srv://${user}:${password}@${server}/${database}?retryWrites=true`;
 
-mongoose.connect(uri, { useNewUrlParser: true, useFindAndModify: false  });
+const options = {
+    useUnifiedTopology: true,
+    autoIndex: false, // Don't build indexes
+    reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+    reconnectInterval: 500, // Reconnect every 500ms
+    // If not connected, return errors immediately rather than waiting for reconnect
+    bufferMaxEntries: 0,
+    connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
+    socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+};
+
+const uri = `mongodb://localhost:27017/${database}`;
+
+mongoose.connect(uri, { 
+    useUnifiedTopology: true,
+    useNewUrlParser: true 
+});
+
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
-
-db.once('open', function() {
-    console.log('open connection in mongoDB'); 
-});
-db.on('connected', function () {  
-    console.log('creating connection with mongoDB');
-}); 
-db.on('error',function (err) {  
-    console.log('connection error: ' + err);
-}); 
-db.on('disconnected', function () {  
-    console.log('connection disconnected 0f mongoDB'); 
-});
 
 module.exports = db

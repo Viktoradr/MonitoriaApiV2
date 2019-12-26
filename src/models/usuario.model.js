@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Types.ObjectId
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 let usuarioSchema = new mongoose.Schema({
     nome: String,
@@ -8,9 +8,7 @@ let usuarioSchema = new mongoose.Schema({
     senha: String,                                               
     ativo: Boolean,
     perfil: Number,
-    dataCadastro: Date,
-    projetos: []
-
+    dataCadastro: Date
 })
 
-module.exports = mongoose.model('Usuario', usuarioSchema)
+module.exports = mongoose.model('usuario', usuarioSchema, 'usuario')

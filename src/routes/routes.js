@@ -2,7 +2,6 @@ let routes = require('express').Router()
 
 let projetoRoute = require('../routes/projeto.route')
 let usuarioRoute = require('../routes/usuario.route')
-let cardRoute = require('../routes/card.route')
 
 // Handler for 404 - Resource Not Found
 // routes.use((req, res, next) => {
@@ -17,6 +16,5 @@ routes.use((err, req, res, next) => {
 
 routes.use("/", projetoRoute)
 routes.use("/", usuarioRoute)
-routes.use("/", cardRoute)
 
 module.exports = routes
