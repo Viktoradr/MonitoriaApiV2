@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 // const server = 'cluster0-zhpvr.azure.mongodb.net'
-const database = 'Monitoria'
 // const user = 'Victor'
 // const password = 'V0302adr'
 
@@ -18,7 +17,11 @@ const options = {
     socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
 };
 
-const uri = `mongodb://localhost:27017/${database}`;
+// const database = 'Monitoria';
+// const uri = `mongodb://localhost:27017/${database}`;
+
+const database = 'dashboard_v2';
+const uri = `mongodb://10.21.0.67:27017/${database}`;
 
 mongoose.connect(uri, { 
     useUnifiedTopology: true,

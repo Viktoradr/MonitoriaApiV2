@@ -33,13 +33,13 @@ exports.AdicionarProjeto = function(req, res) {
 
   model
     .save()
-    .then(doc => res.status(200).json(doc))
+    .then(doc => res.status(200).json(doc.ok == 1))
     .catch(err => res.status(500).json(err));
 };
 
 exports.AtualizarProjeto = function(req, res) {
   Projeto.updateOne({ _id: req.params.id }, req.body, { new: true })
-    .then(doc => res.status(200).json(doc))
+    .then(doc => res.status(200).json(doc.ok == 1 && doc.nModified == 1))
     .catch(err => res.status(500).json(err));
 };
 
